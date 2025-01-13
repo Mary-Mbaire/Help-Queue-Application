@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import PrivateRoute from "./PrivateRoute";
 import TicketList from "./TicketList";
 import AddTicket from "./AddTicket";
 import Login from "./Login";
@@ -10,9 +10,15 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tickets" element={<TicketList />} />
-        <Route path="/add-ticket" element={<AddTicket />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/add-ticket"
+          element={
+            <PrivateRoute>
+              <AddTicket />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
